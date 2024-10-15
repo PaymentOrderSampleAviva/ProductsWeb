@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const DataSource = ({ resourceUrl, resourceName, children }) => {
+const DataSource = ({ resourceUrl, resourceName, children }) => {
 	const [state, setState] = useState(null);
 
 	useEffect(() => {
@@ -24,3 +24,5 @@ export const DataSource = ({ resourceUrl, resourceName, children }) => {
 		</>
 	);
 }
+
+export default DataSource
