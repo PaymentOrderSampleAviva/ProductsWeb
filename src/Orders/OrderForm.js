@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
+import OrdersDataSource from "../Data/OrdersDataSource";
 
 function OrderForm({products, showModal, handleClose})
 {
@@ -14,26 +14,7 @@ function OrderForm({products, showModal, handleClose})
 
     const confirmOrder = (data) => {
         (async () => {
-			axios.post('/orders/create', data)
-        .then(response => {
-            console.log('Success:', response.data);
-        })
-        .catch(error => {
-            if (error.response) {
-            // Server responded with a status code outside of 2xx
-            console.error('Error Data:', error.response.data);
-            console.error('Status Code:', error.response.status);
-            console.error('Headers:', error.response.headers);
-            alert(error.response.data)
-            } else if (error.request) {
-            // Request was made, but no response was received
-            console.error('Request Error:', error.request);
-            } else {
-            // Something happened in setting up the request
-            console.error('General Error:', error.message);
-            }
-            console.error('Config:', error.config);
-        })
+          await OrdersDataSource.CreateOrder(data);
 		})();
     }
 
