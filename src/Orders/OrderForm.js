@@ -12,11 +12,7 @@ function OrderForm({products, showModal, handleClose})
 {
     const [selectedOption, setSelectedOption] = useState(null);
 
-    const confirmOrder = async (data) => {
-      await OrdersDataSource.CreateOrder(data);
-    }
-
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         if (!selectedOption) {
           alert('Please select an option before confirming.');
         } else {
@@ -30,7 +26,7 @@ function OrderForm({products, showModal, handleClose})
                 }))
               };
 
-            confirmOrder(data);
+              await OrdersDataSource.CreateOrder(data);
         }
       };
 
