@@ -12,10 +12,8 @@ function OrderForm({products, showModal, handleClose})
 {
     const [selectedOption, setSelectedOption] = useState(null);
 
-    const confirmOrder = (data) => {
-        (async () => {
-          await OrdersDataSource.CreateOrder(data);
-		})();
+    const confirmOrder = async (data) => {
+      await OrdersDataSource.CreateOrder(data);
     }
 
     const handleConfirm = () => {
@@ -60,7 +58,7 @@ function OrderForm({products, showModal, handleClose})
                             <PaymentOptions 
                             selectedOption={selectedOption} 
                             onOptionChange={setSelectedOption}/>
-                            <Button onClick={handleConfirm} variant="primary" type="submit">
+                            <Button onClick={async () => await handleConfirm()} variant="primary" type="submit">
                                 Confirm
                             </Button>
                         </div>
